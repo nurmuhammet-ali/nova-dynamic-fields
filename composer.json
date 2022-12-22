@@ -1,13 +1,16 @@
 {
     "name": "nurmuhammet/dynamic-fields",
-    "description": "A Laravel Nova field.",
+    "description": "Dynamic fields for laravel nova.",
     "keywords": [
         "laravel",
-        "nova"
+        "nova",
+        "dynamic fields"
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0"
+        "php": "^7.3|^8.0",
+        "laravel/framework": "^8.0|^9.0",
+        "laravel/nova": "^4.0"
     },
     "autoload": {
         "psr-4": {
