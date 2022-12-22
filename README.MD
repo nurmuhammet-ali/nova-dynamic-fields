@@ -12,7 +12,7 @@ Install the package in a Laravel Nova project via Composer:
 
 ```bash
 # Install nova-inputmask
-composer require nurmuhammet/nova-dynamic-fields
+composer require nurmuhammet/dynamic-fields
 ```
 
 ## Usage
