@@ -109,12 +109,12 @@ export default {
 
     formatFields() {
         return this.currentField.fields.map(field => {
-          this.values[field.name.toLowerCase()] = field.default ? field.default : ''
+            this.values[field.name.toLowerCase()] = this.values[field.name.toLowerCase()] || (field.default || '')
 
           return {
             type: field.type,
             name: field.name.toLowerCase(),
-            label: field.label ? capitalize(field.label) :  capitalize(field.name),
+            label: field.label ? capitalize(field.label) : capitalize(field.name),
             default: field.default,
             required: field.required,
             placeholder: field.placeholder,
@@ -132,6 +132,7 @@ export default {
 
   mounted() {
     this.fillWithArrayName = this.field.fillWithArrayName
+    this.currentField.fields = this.currentField.fields || [];
 
     this.userFields = this.formatFields()
   }
