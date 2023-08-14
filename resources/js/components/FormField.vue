@@ -41,6 +41,7 @@
 <script>
 import { DependentFormField, HandlesValidationErrors } from 'laravel-nova'
 import { capitalize } from 'lodash'
+import debounce from 'lodash/debounce'
 
 export default {
    mixins: [DependentFormField, HandlesValidationErrors],
@@ -100,6 +101,26 @@ export default {
       }
       
       return new_field
+    },
+
+    onSyncedField() {
+        this.userFields = this.formatFields()
+    },
+
+    formatFields() {
+        return this.currentField.fields.map(field => {
+          this.values[field.name.toLowerCase()] = field.default ? field.default : ''
+
+          return {
+            type: field.type,
+            name: field.name.toLowerCase(),
+            label: field.label ? capitalize(field.label) :  capitalize(field.name),
+            default: field.default,
+            required: field.required,
+            placeholder: field.placeholder,
+            options: field.options
+          }
+        })
     }
   },
 
@@ -110,21 +131,9 @@ export default {
   },
 
   mounted() {
-    this.fillWithArrayName = this.field.fillWithArrayName;
+    this.fillWithArrayName = this.field.fillWithArrayName
 
-    this.userFields = this.field.fields.map(field => {
-      this.values[field.name.toLowerCase()] = field.default ? field.default : ''
-
-      return {
-        type: field.type,
-        name: field.name.toLowerCase(),
-        label: field.label ? capitalize(field.label) :  capitalize(field.name),
-        default: field.default,
-        required: field.required,
-        placeholder: field.placeholder,
-        options: field.options
-      }
-    })
+    this.userFields = this.formatFields()
   }
 }
 </script>

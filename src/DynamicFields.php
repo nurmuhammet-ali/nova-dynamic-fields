@@ -46,6 +46,12 @@ class DynamicFields extends Field
         return $this->withMeta(['fields' => $fieldsForFrontEnd]);
     }
 
+    /**
+     * Fill with array name
+     * 
+     * @param  string $requestArrayName
+     * @return $this
+     */
     public function fillWithArrayName(string $requestArrayName = '')
     {
         return $this->withMeta(['fillWithArrayName' => $requestArrayName]);
